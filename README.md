@@ -67,4 +67,3 @@ Structured reflection improves productivity and awareness
 - Use daily for 7 days
 - Track productivity
 - Collect feedback
-  ---
