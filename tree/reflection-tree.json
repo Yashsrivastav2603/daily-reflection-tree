@@ -1,0 +1,160 @@
+{
+  "nodes": [
+    {
+      "id": "START",
+      "type": "start",
+      "text": "Good evening. Let's reflect on your day.",
+      "next": "A1_Q1"
+    },
+    {
+      "id": "A1_Q1",
+      "type": "question",
+      "text": "How would you describe your day?",
+      "options": ["Productive", "Mixed", "Frustrating", "Tough"],
+      "next": "A1_D1"
+    },
+    {
+      "id": "A1_D1",
+      "type": "decision",
+      "conditions": {
+        "Productive": "A1_Q2_HIGH",
+        "Mixed": "A1_Q2_HIGH",
+        "Frustrating": "A1_Q2_LOW",
+        "Tough": "A1_Q2_LOW"
+      }
+    },
+    {
+      "id": "A1_Q2_HIGH",
+      "type": "question",
+      "text": "What helped things go well?",
+      "options": ["My effort", "Team support", "Luck", "Adaptability"],
+      "signal": "axis1:internal",
+      "next": "A1_R_INT"
+    },
+    {
+      "id": "A1_Q2_LOW",
+      "type": "question",
+      "text": "What was your first reaction when things went wrong?",
+      "options": [
+        "Find control",
+        "Wait for help",
+        "Blame situation",
+        "Feel stuck"
+      ],
+      "signal": "axis1:external",
+      "next": "A1_R_EXT"
+    },
+    {
+      "id": "A1_R_INT",
+      "type": "reflection",
+      "text": "You showed agency today. You influenced outcomes.",
+      "next": "BRIDGE_1_2"
+    },
+    {
+      "id": "A1_R_EXT",
+      "type": "reflection",
+      "text": "Things felt out of control. But small choices still existed.",
+      "next": "BRIDGE_1_2"
+    },
+    {
+      "id": "BRIDGE_1_2",
+      "type": "bridge",
+      "text": "Now let’s look at what you contributed today.",
+      "next": "A2_Q1"
+    },
+    {
+      "id": "A2_Q1",
+      "type": "question",
+      "text": "What best describes your actions today?",
+      "options": [
+        "Helped someone",
+        "Did extra work",
+        "Expected recognition",
+        "Felt others failed"
+      ],
+      "next": "A2_D1"
+    },
+    {
+      "id": "A2_D1",
+      "type": "decision",
+      "conditions": {
+        "Helped someone": "A2_CONTRIB",
+        "Did extra work": "A2_CONTRIB",
+        "Expected recognition": "A2_ENT",
+        "Felt others failed": "A2_ENT"
+      }
+    },
+    {
+      "id": "A2_CONTRIB",
+      "type": "reflection",
+      "text": "You focused on contribution. That builds long-term value.",
+      "signal": "axis2:contribution",
+      "next": "BRIDGE_2_3"
+    },
+    {
+      "id": "A2_ENT",
+      "type": "reflection",
+      "text": "You noticed what you didn’t receive. That’s natural, but contribution creates control.",
+      "signal": "axis2:entitlement",
+      "next": "BRIDGE_2_3"
+    },
+    {
+      "id": "BRIDGE_2_3",
+      "type": "bridge",
+      "text": "Now let’s expand perspective beyond yourself.",
+      "next": "A3_Q1"
+    },
+    {
+      "id": "A3_Q1",
+      "type": "question",
+      "text": "Who was most affected by your day?",
+      "options": ["Only me", "My team", "A colleague", "Customer"],
+      "next": "A3_D1"
+    },
+    {
+      "id": "A3_D1",
+      "type": "decision",
+      "conditions": {
+        "Only me": "A3_SELF",
+        "My team": "A3_TEAM",
+        "A colleague": "A3_COL",
+        "Customer": "A3_CUST"
+      }
+    },
+    {
+      "id": "A3_SELF",
+      "type": "reflection",
+      "text": "Your focus stayed internal. Expanding perspective can reduce stress.",
+      "signal": "axis3:self",
+      "next": "SUMMARY"
+    },
+    {
+      "id": "A3_TEAM",
+      "type": "reflection",
+      "text": "You considered your team. That builds collaboration.",
+      "signal": "axis3:team",
+      "next": "SUMMARY"
+    },
+    {
+      "id": "A3_COL",
+      "type": "reflection",
+      "text": "You noticed others. That shows empathy.",
+      "signal": "axis3:altro",
+      "next": "SUMMARY"
+    },
+    {
+      "id": "A3_CUST",
+      "type": "reflection",
+      "text": "You focused on impact. That’s high-level thinking.",
+      "signal": "axis3:altro",
+      "next": "SUMMARY"
+    },
+    {
+      "id": "SUMMARY",
+      "type": "summary",
+      "text": "Today you reflected on your actions, contribution, and perspective. Small improvements lead to growth.",
+      "next": "END"
+    },
+    { "id": "END", "type": "end", "text": "See you tomorrow." }
+  ]
+}
